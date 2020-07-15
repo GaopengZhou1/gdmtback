@@ -1,0 +1,22 @@
+.panel-dark-head .panel-heading {
+	background-color: #4e5154;
+}
+
+.panel-dark-head .panel-heading p {
+	opacity: 0.75;
+}
+
+.panel-dark-head .panel-body {
+	border: 1px solid #ddd;
+	border-top: 0;
+}
+
+.panel-dark-head .panel-footer {
+	border: 1px solid #ddd;
+	border-top: 0;
+}
+
+.panel-dark-head .panel-heading {
+	border-bottom: 0;
+	color: #fff;
+}
