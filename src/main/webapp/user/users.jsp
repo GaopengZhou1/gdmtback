@@ -32,30 +32,32 @@
 				toolbar : '#toolbar',
 				striped : true,
 				cache : false,
-				pagination : true,
+				pagination: true,
 				sidePagination : "server",
+				queryParamsType : "limit", 
+				sortOrder: "asc",
 				pageNumber : 1,
-				pageSize : 10,
-				pageList : [ 10, 25, 50, 100 ],
+				pageSize : 5,
+				pageList : [5, 10, 25, 50],
 				showColumns : true,
 				showRefresh : true,
 				clickToSelect : true,
+				paginationPreText:"<<",
+			    paginationNextText:">>",
 				uniqueId : "user_uuid",
 				columns : [ { checkbox : true, visible: true }, 
 							{ field : 'username', title : '姓名', width : 120, align : 'center' },
 							{ field : 'email', title : '邮箱', width : 200, align : 'center' },
 							{ field : 'mobile', title : '手机', width : 150, align : 'center' },
 							{ field : 'nice_name', title : '昵称', width : 130, align : 'center' },
-							{ field : 'organ.organ_name', title : '部门', width : 200, align : 'center' },
-							{ field : 'is_admin', title : '是否管理员' ,formatter : ifFormatter, width : 120, align : 'center'},
-							{ field : 'modtime', title : '修改时间' ,formatter : dateFormatter, align : 'center'}
+							{ field : 'organ_name', title : '部门', width : 200, align : 'center' },
 						  ],
 				queryParams : function(params) {
-					var queryData = {
-							pageSize : params.limit,
-							pageNumber : (params.offset / params.limit) + 1
-					};
-					return queryData;
+					var temp = {
+		                    offset :params.offset,// SQL语句起始索引
+		                    pageNumber : params.limit  // 每页显示数量
+		                };
+		                return temp;
 				}
 			});
 			
@@ -67,6 +69,7 @@
 					return;
 				}
 				window.parent.openIframe('${pageContext.request.contextPath}/user/updateUser.jsp?id=' + users[0].user_uuid);
+				
 			});			
 			
 			$('#btn_delete').click(function(){

@@ -26,28 +26,28 @@
 				<div class="form-group">
 					<label class="col-sm-4 control-label">姓名</label>
 					<div class="col-sm-8">
-						<input class="form-control" id="username" name="username" placeholder="请输入用户姓名">
+						<input class="form-control" id="username" name="username" value="<%=request.getParameter("username")%>" placeholder="请输入用户姓名">
 					</div>
 				</div>
 				
 				<div class="form-group">
 					<label class="col-sm-4 control-label">密码</label>
 					<div class="col-sm-8">
-						<input class="form-control" type="password" id="password" name="password" placeholder="请输入用户密码">
+						<input class="form-control" type="password" id="password" name="password" value="<%=request.getParameter("password")%>" placeholder="请输入用户密码">
 					</div>
 				</div>
 				
 				<div class="form-group">
 					<label class="col-sm-4 control-label">邮箱</label>
 					<div class="col-sm-8">
-						<input class="form-control" id="email" name="email" placeholder="请输入用户邮箱">
+						<input class="form-control" id="email" name="email" value="<%=request.getParameter("email")%>" placeholder="请输入用户邮箱">
 					</div>
 				</div>
 				
 				<div class="form-group">
 					<label class="col-sm-4 control-label">手机</label>
 					<div class="col-sm-8">
-						<input class="form-control" id="mobile" name="mobile" placeholder="请输入用户手机号">
+						<input class="form-control" id="mobile" name="mobile" value="<%=request.getParameter("mobile")%>" placeholder="请输入用户手机号">
 					</div>
 				</div>
 				
@@ -67,8 +67,8 @@
 					<label class="col-sm-4 control-label">所属组织</label>
 					<div class="col-sm-8">
 						<div class="input-group mb15">
-							<input id="parent_name" class="form-control" type="text" name="organ.organ_name" placeholder="请选择组织信息"/>
-							<input id="parent_uuid" type="hidden" name="organ.organ_uuid"/>
+							<input id="parent_name" class="form-control" type="text" name="organ_name" value="<%=request.getParameter("parent_name")%>" placeholder="请选择组织信息"/>
+							<input id="parent_uuid" type="hidden" name="organ_uuid"/>
 							<span class="input-group-addon" data-toggle="modal" data-target="#orgTree"><i class="fa fa-paper-plane"></i></span> 
 						</div>
 					</div>
@@ -83,11 +83,11 @@
 				<div class="form-group">
 					<label class="col-sm-4 control-label">昵称</label>
 					<div class="col-sm-8">
-						<input class="form-control" id="nice_name" name="nice_name" placeholder="请输入用户昵称">
+						<input class="form-control" id="nice_name" name="nice_name" value="<%=request.getParameter("nice_name")%>" placeholder="请输入用户昵称">
 					</div>
 				</div>
 				
-				<div class="form-group">
+				<!-- <div class="form-group">
 					<label class="col-sm-4 control-label">是否管理员</label>
 					<div class="col-sm-8">
 						<div class="radio icheck-silver icheck-inline">
@@ -97,26 +97,26 @@
 							<input type="radio" value="1" name="is_admin" id="is_admin2"><label for="is_admin2">是</label>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				
 				<div class="form-group">
 					<label class="col-sm-4 control-label">密保</label>
 					<div class="col-sm-8">
-						<input class="form-control" id="pwdque" name="pwdque" placeholder="请输入密保问题">
+						<input class="form-control" id="pwdque" name="pwdque" value="<%=request.getParameter("pwdque")%>" placeholder="请输入密保问题">
 					</div>
 				</div>
 				
 				<div class="form-group">
 					<label class="col-sm-4 control-label">密保答案</label>
 					<div class="col-sm-8">
-						<input class="form-control" id="pwdans" name="pwdans" placeholder="请输入密保问题答案">
+						<input class="form-control" id="pwdans" name="pwdans" value="<%=request.getParameter("pwdans")%>" placeholder="请输入密保问题答案">
 					</div>
 				</div>
 				
 				<div class="form-group">
 					<label class="col-sm-4 control-label">备注</label>
 					<div class="col-sm-8">
-						<textarea class="form-control" id="remark" name="remark" placeholder="请输入备注"></textarea>
+						<textarea class="form-control" id="remark" name="remark" value="<%=request.getParameter("remark")%>" placeholder="请输入备注"></textarea>
 					</div>
 				</div>
 
@@ -188,8 +188,8 @@
 				$('#pwdans').val(user.pwdans);
 				$('#remark').val(user.remark);
 				//组织数据赋值
-				$('#parent_uuid').val(user.organ.organ_uuid);
-				$('#parent_name').val(user.organ.organ_name);
+				$('#parent_uuid').val(user.organ_uuid);
+				$('#parent_name').val(user.organ_name);
 				//单选属性赋值
 				$('input:radio[name=is_sun]')[user.is_sun].checked = true;
 				$('input:radio[name=is_admin]')[user.is_admin].checked = true;

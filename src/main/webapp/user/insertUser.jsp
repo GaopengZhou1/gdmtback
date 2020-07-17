@@ -66,8 +66,8 @@
 					<label class="col-sm-4 control-label">所属组织</label>
 					<div class="col-sm-8">
 						<div class="input-group mb15">
-							<input id="parent_name" class="form-control" type="text" name="organ.organ_name" placeholder="请选择组织信息"/>
-							<input id="parent_uuid" type="hidden" name="organ.organ_uuid"/>
+							<input id="parent_name" class="form-control" type="text" name="organ_name" placeholder="请选择组织信息"/>
+							<input id="parent_uuid" type="hidden" name="organ_uuid"/>
 							<span class="input-group-addon" data-toggle="modal" data-target="#orgTree"><i class="fa fa-paper-plane"></i></span> 
 						</div>
 					</div>
@@ -86,7 +86,7 @@
 					</div>
 				</div>
 				
-				<div class="form-group">
+				<!-- <div class="form-group">
 					<label class="col-sm-4 control-label">是否管理员</label>
 					<div class="col-sm-8">
 						<div class="radio icheck-silver icheck-inline">
@@ -96,7 +96,7 @@
 							<input type="radio" value="1" name="is_admin" id="is_admin2"><label for="is_admin2">是</label>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				
 				<div class="form-group">
 					<label class="col-sm-4 control-label">密保</label>

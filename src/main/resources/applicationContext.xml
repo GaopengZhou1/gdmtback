@@ -12,16 +12,16 @@
 	http://www.springframework.org/schema/aop/spring-aop.xsd
 	http://www.springframework.org/schema/tx 
 	http://www.springframework.org/schema/tx/spring-tx.xsd">
-
+ 
 	<!-- dataSource -->
 	<bean id="dataSource"
 		class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<property name="jdbcUrl"
-			value="jdbc:mysql://localhost:3306/springmvc?characterEncoding=utf-8" />
+			value="jdbc:mysql://localhost:3306/coal?characterEncoding=utf-8" />
 		<property name="user" value="root" />
-		<property name="password" value="root" />
+		<property name="password" value="123456" />
 	</bean>
 
 	<!-- sqlSessionFactory -->
@@ -47,4 +47,5 @@
 	<!--开启注解事务 -->
 	<tx:annotation-driven
 		transaction-manager="dataSourceTransactionManager" />
+		
 </beans>
