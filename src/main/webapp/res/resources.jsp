@@ -46,7 +46,7 @@
 							{ field : 'dir_code', title : '菜单编号' },
 							{ field : 'dir_name', title : '菜单名称' },
 							{ field : 'dir_level_number', title : '菜单级数' },
-							{ field : 'parent.dir_name', title : '父菜单名称' },
+							{ field : 'parent_dir_name', title : '父菜单名称' },	/* 原来是parent.dir_name */
 							{ field : 'isitem', title : '明细否' ,formatter : ifFormatter},
 							{ field : 'dir_order', title : '菜单顺序号' },
 							{ field : 'locale', title : '语言类型' },
@@ -82,7 +82,7 @@
 			});			
 		});
 		window.parent.setMainDivHeight(0);
-		window.parent.set_iFrame(680);
+		window.parent.set_iFrame(2400);
 	</script>
 </body>
 </html>
