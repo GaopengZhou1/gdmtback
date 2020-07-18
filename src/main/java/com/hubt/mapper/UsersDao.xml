@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
+<!--     
+    namespace：必须与对应的接口全类名一致  UserMapper.java  
+    id ：必须与对应接口的某个对应的方法名一致即必须要和UserMapper.java接口中的方法同名。  
+ -->    
+
+ <mapper namespace="com.hubt.mapper.UsersDao">
+
+	<select id="findAll" resultType="users">
+		select pt_user.*,pt_organ.organ_name
+		from pt_user inner join pt_organ
+		on pt_user.organ_uuid=pt_organ.organ_uuid
+	</select>
+
+	<select id="findOne" resultType="users">
+		select * from pt_user where user_uuid=#{user_uuid}
+	</select>
+	
+	<insert id="addOne" parameterType="users">
+		insert into pt_user (user_uuid,username,password,email,mobile,organ_uuid,nice_name,pwdque,pwdans,remark) values
+		 (#{user_uuid},#{username},#{password},#{email},#{mobile},#{organ_uuid},#{nice_name},#{pwdque},#{pwdans},#{remark})
+	</insert>
+	
+	<delete id="deleteOne" parameterType="users">
+		delete from pt_user where user_uuid=#{user_uuid}
+	</delete>
+	
+	<select id="findOrganName" parameterType="users" resultType="String">
+		select organ_name from pt_organ where organ_uuid in (select organ_uuid from pt_user where user_uuid=#{user_uuid})
+	</select>
+	
+	<!-- 分页查询 -->
+    <select id="findPageSize" parameterType="map" resultType="users">
+		select pt_user.*,pt_organ.organ_name
+		from pt_user inner join pt_organ
+		on pt_user.organ_uuid=pt_organ.organ_uuid limit #{startIndex},#{pageSize}
+	</select>
+	
+	<select id="getCount" resultType="int">
+	   select count(*) from pt_user;
+	</select>
+	
+	<update id="updateOne" parameterType="users">
+		update pt_user set username=#{username},password=#{password},email=#{email},mobile=#{mobile},organ_uuid=#{organ_uuid},nice_name=#{nice_name},pwdque=#{pwdque},pwdans=#{pwdans},remark=#{remark} 
+		where user_uuid=#{user_uuid}
+	</update>
+	
+	<select id="getAll" resultType="UsersPageList">
+     select pt_user.*,pt_organ.organ_name
+		from pt_user inner join pt_organ
+		on pt_user.organ_uuid=pt_organ.organ_uuid  LIMIT  #{offset},#{pageNumber}
+     </select>
+
+     <select id="getTatlo" resultType="java.lang.Integer">
+     select count(1) from pt_user
+     </select>
+</mapper>

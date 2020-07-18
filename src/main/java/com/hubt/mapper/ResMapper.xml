@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：必须与对应的接口全类名一致 UserMapper.java id ：必须与对应接口的某个对应的方法名一致即必须要和UserMapper.java接口中的方法同名。 -->
+<mapper namespace="com.hubt.mapper.ResMapper">
+
+	<!-- 新增 -->
+	<insert id="saveRes" parameterType="Res">
+		insert into pt_menu_directory ()
+	</insert>
+
+	<!-- 修改 -->
+	<update id="updateRes" parameterType="Res">
+		update pt_menu_directory m 
+		inner join pt_res r on m.menu_id=r.res_uuid 
+		set r.res_url=#{res_url}, m.dir_code=#{dir_code}, m.dir_name=#{dir_name}, 
+		m.dir_level_number=#{dir_level_number}, m.parent_id=#{parent_id}, 
+		m.isitem=#{isitem}, m.dir_order=#{dir_order}
+		where menu_id =	#{res_uuid}
+	</update>
+
+	<!-- 删除 -->
+	<delete id="deleteRes" parameterType="String">
+		delete from pt_menu_directory where menu_id = #{id}
+		and menu_id not in (select distinct res_uuid from pt_role_res)
+	</delete>
+
+	<!-- 根据id查找单个资源 -->
+	<select id="findResById" parameterType="String" resultType="Res">
+		select m.menu_id, m.dir_code, m.dir_name, m.dir_level_number, m.parent_id, 
+		if(ISNULL(n.dir_name), 'root', n.dir_name) as parent_dir_name, m.isitem, 
+		m.dir_order, m.status, m.flag, m.locale, m.res_uuid, r.res_url
+		from pt_menu_directory m 
+		left join pt_res r on m.res_uuid=r.res_uuid 
+		left join pt_menu_directory n on m.parent_id=n.menu_id 
+		where m.menu_id=#{id}
+	</select>
+
+	<!-- 根据parentId查找所有资源 -->
+	<select id="findAllByParentId" parameterType="String" resultType="Res">
+		select m.menu_id, m.dir_code, m.dir_name, m.dir_level_number, m.parent_id, 
+		if(ISNULL(n.dir_name), 'root', n.dir_name) as parent_dir_name, m.isitem, 
+		m.dir_order, m.status, m.flag, m.locale, m.res_uuid, r.res_url
+		from pt_menu_directory m 
+		left join pt_res r on m.res_uuid=r.res_uuid 
+		left join pt_menu_directory n on m.parent_id=n.menu_id 
+		where m.parent_id=#{pid}
+	</select>
+	
+	<!-- 查询所有 -->
+	<select id="findAll" resultType="Res">
+		select m.menu_id, m.dir_code, m.dir_name, m.dir_level_number, m.parent_id, 
+		if(ISNULL(n.dir_name), 'root', n.dir_name) as parent_dir_name, m.isitem, 
+		m.dir_order, m.status, m.flag, m.locale, m.res_uuid, r.res_url
+		from pt_menu_directory m 
+		left join pt_res r on m.res_uuid=r.res_uuid 
+		left join pt_menu_directory n on m.parent_id=n.menu_id 
+		limit #{0}, #{1}
+	</select>
+	
+	<select id="countAll" resultType="Integer">
+		select count(*)
+		from pt_menu_directory m 
+		left join pt_res r on m.res_uuid=r.res_uuid 
+		left join pt_menu_directory n on m.parent_id=n.menu_id 
+	</select>
+</mapper>

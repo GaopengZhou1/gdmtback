@@ -126,7 +126,7 @@
 				$('#dir_name').val(res.dir_name);
 				$('#dir_level_number').val(res.dir_level_number);
 				$('#parent_id').val(res.parent_id);
-				$('#parent_name').val(res.parent.dir_name);
+				$('#parent_name').val(res.parent_dir_name);		/* 原来是res.parent.dir_name */
 				$('input:radio[name=isitem]')[res.isitem].checked = true;
 				$('#dir_order').val(res.dir_order);
 			}, "json");
