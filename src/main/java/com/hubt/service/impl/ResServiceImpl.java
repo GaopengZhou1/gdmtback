@@ -26,6 +26,12 @@ public class ResServiceImpl implements ResService {
 	}
 
 	@Override
+	public boolean insertRes(Res res) {
+		// TODO Auto-generated method stub
+		return resMapper.insertRes(res);
+	}
+	
+	@Override
 	public boolean updateRes(Res res) {
 		// TODO Auto-generated method stub
 		return resMapper.updateRes(res);

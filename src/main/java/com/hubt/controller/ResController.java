@@ -28,8 +28,9 @@ public class ResController {
 	}
 
 	@RequestMapping("/insert")
-	public void insertRes() {
-
+	public boolean insertRes(@Param("form")Res res) {
+//		System.out.println(res);
+		return resService.insertRes(res);
 	}
 	
 	@ResponseBody

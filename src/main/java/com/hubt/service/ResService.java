@@ -7,6 +7,8 @@ import com.hubt.model.Res;
 public interface ResService {
 	void saveRes(Res res);
 
+	boolean insertRes(Res res);
+	
     boolean updateRes(Res res);
 
     boolean deleteRes(String id);
