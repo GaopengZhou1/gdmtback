@@ -6,7 +6,8 @@
 
 	<!-- 新增 -->
 	<insert id="saveRes" parameterType="Res">
-		insert into pt_menu_directory ()
+		insert into pt_menu_directory (menu_id,dir_code,dir_name,dir_level_number,parent_id,parent_dir_name,dir_order,status,flag,locale,res_uuid,res_url) 
+			 values (#{menu_id},#{dir_code},#{dir_name},#{dir_level_number},#{parent_id},#{parent_dir_name},#{dir_order},#{status},#{flag},#{locale},#{res_uuid},#{res_url})
 	</insert>
 
 	<!-- 修改 -->
