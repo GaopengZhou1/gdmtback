@@ -13,6 +13,7 @@ public class Org {
     private String description;
     private String account_code;
     private String shortname;
+    private Org parent;
 
     public Org() {super(); }
 
@@ -141,5 +142,13 @@ public class Org {
 
     public void setShortname(String shortname) {
         this.shortname = shortname;
+    }
+
+    public Org getParent() {
+        return parent;
+    }
+
+    public void setParent(Org parent) {
+        this.parent = parent;
     }
 }

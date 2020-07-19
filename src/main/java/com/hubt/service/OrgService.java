@@ -11,11 +11,13 @@ public interface OrgService {
 
     Org findOrgById(String id);
 
-    List<Org> findAll();
+    List<Org> findAll(Integer pageNumber, Integer pageSize);
 
     TreeNode findOrgsByParentId(String id);
 
     boolean updateOrg(String organ_uuid,String organ_code,String organ_name,String organ_type,String in_use,String parent_uuid,String description,String account_code,String shortname);
 
     boolean insertOrg(String organ_code,String organ_name,String organ_type,String in_use,String parent_uuid,String description,String account_code,String shortname);
+
+    int countAll();
 }
