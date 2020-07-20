@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
+<!--     
+    namespace：必须与对应的接口全类名一致  UserMapper.java  
+    id ：必须与对应接口的某个对应的方法名一致即必须要和UserMapper.java接口中的方法同名  
+ -->    
+ <mapper namespace="com.hubt.mapper.RoleMapper"> 
+
+      <!-- 新增 -->
+      <insert id="saveRole" parameterType="Role"  >
+         insert into pt_role(role_uuid,role_id,role_name) values (#{role_uuid},#{role_id},#{role_name})
+      </insert>
+       <!-- 查询 -->
+      <select id="selectRoleByRole_name" parameterType="String"   resultType="Role">
+        select * from pt_role where role_name=#{role_name}
+      </select>
+      <select id="getRoles"   resultType="Role">
+        select * from pt_role 
+      </select>
+      <select id="getRoleByUUID"  parameterType="String" resultType="Role">
+        select * from pt_role where role_uuid=#{uuid}
+      </select>
+        <!-- 删除 -->
+      <delete id="removeRoleByUUID" parameterType="String">
+          delete from pt_role where role_uuid=#{dataId}    
+      </delete>
+        <!-- 修改 -->
+      <update id="updateRole" parameterType="Role" >
+        update pt_role set role_name=#{role_name},role_id=#{role_id} where role_uuid=#{role_uuid}
+      </update>
+
+ </mapper>
