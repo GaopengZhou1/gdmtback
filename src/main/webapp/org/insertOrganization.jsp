@@ -58,10 +58,10 @@
 					<label class="col-sm-4 control-label">是否在用</label>
 					<div class="col-sm-8">
 						<div class="radio icheck-silver icheck-inline">
-							<input type="radio" value="Y" name="in_use" id="in_use1"><label for="in_use1">否</label>
+							<input type="radio" value="N" name="in_use" id="in_use1"><label for="in_use1">否</label>
 						</div>
 						<div class="radio icheck-silver icheck-inline">
-							<input type="radio" value="N" name="in_use" id="in_use2"><label for="in_use2">是</label>
+							<input type="radio" value="Y" name="in_use" id="in_use2"><label for="in_use2">是</label>
 						</div>
 					</div>
 				</div>
@@ -145,6 +145,7 @@
 		
 		function submitForm(){
 				var form = $('#orgForm').serialize();
+			    console.log(form);
 				$.post('${pageContext.request.contextPath}/org/insert', form, function (data) {
 					
 					debugger;

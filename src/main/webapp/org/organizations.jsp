@@ -81,7 +81,7 @@
 		});
 	
 		window.parent.setMainDivHeight(0);
-		window.parent.set_iFrame(680);
+		window.parent.set_iFrame(2400);
 	</script>
 </body>
 </html>
