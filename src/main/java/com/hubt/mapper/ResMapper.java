@@ -6,7 +6,7 @@ import com.hubt.model.Res;
 
 
 public interface ResMapper {
-	void saveRes(Res res);
+	List<String> findResIdByUrl(String url);
 
 	boolean insertRes(Res res);
 	

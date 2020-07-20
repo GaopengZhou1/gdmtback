@@ -18,11 +18,11 @@ public class ResServiceImpl implements ResService {
 	public void setResMapper(ResMapper resMapper) {
 		this.resMapper = resMapper;
 	}
-	
+
 	@Override
-	public void saveRes(Res res) {
+	public List<String> findResIdByUrl(String url) {
 		// TODO Auto-generated method stub
-		resMapper.saveRes(res);
+		return resMapper.findResIdByUrl(url);
 	}
 
 	@Override
