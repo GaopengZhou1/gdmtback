@@ -16,10 +16,13 @@
         select * from pt_role where role_name=#{role_name}
       </select>
       <select id="getRoles"   resultType="Role">
-        select * from pt_role 
+        select * from pt_role limit #{begin}, #{end}
       </select>
       <select id="getRoleByUUID"  parameterType="String" resultType="Role">
         select * from pt_role where role_uuid=#{uuid}
+      </select>
+       <select id="getRoleCount"   resultType="int">
+        select count(*) from pt_role 
       </select>
         <!-- 删除 -->
       <delete id="removeRoleByUUID" parameterType="String">

@@ -28,8 +28,8 @@ public Role selectRoleByRole_name(String role_name) {
 }
 
 @Override
-public List<Role> getRoles() {
-	return roleMapper.getRoles();
+public List<Role> getRoles(int begin, int end) {
+	return roleMapper.getRoles(begin,end);
 }
 
 @Override
@@ -47,4 +47,16 @@ public int updateRole(Role role) {
 	return roleMapper.updateRole(role);
 }
 
+@Override
+public Role selectRoleByRole_uuid(String role_uuid) {
+	// TODO Auto-generated method stub
+	return roleMapper.selectRoleByRole_uuid(role_uuid);
+}
+
+@Override
+public int getRoleCount() {
+	// TODO Auto-generated method stub
+	return roleMapper.getRoleCount();
+}
+   
 }
