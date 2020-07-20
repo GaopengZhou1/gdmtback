@@ -5,7 +5,7 @@ import java.util.List;
 import com.hubt.model.Res;
 
 public interface ResService {
-	void saveRes(Res res);
+	List<String> findResIdByUrl(String url);
 
 	boolean insertRes(Res res);
 	

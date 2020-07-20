@@ -28,8 +28,13 @@ public class ResController {
 	}
 
 	@RequestMapping("/insert")
-	public boolean insertRes(@Param("form")Res res) {
-//		System.out.println(res);
+	public boolean insertRes(@Param("form")Res res) throws Exception {
+		res.setMenu_id( Integer.toString( Integer.parseInt(res.getDir_code())-100 ));
+		res.setRes_uuid(resService.findResIdByUrl(res.getRes_url()).get(0));
+		res.setStatus('1');
+		res.setFlag('1');
+		res.setLocale("zh-CN");
+		System.out.println(res);
 		return resService.insertRes(res);
 	}
 	

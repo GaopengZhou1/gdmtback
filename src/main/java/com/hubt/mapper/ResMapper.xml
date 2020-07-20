@@ -3,11 +3,20 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace：必须与对应的接口全类名一致 UserMapper.java id ：必须与对应接口的某个对应的方法名一致即必须要和UserMapper.java接口中的方法同名。 -->
 <mapper namespace="com.hubt.mapper.ResMapper">
-
+	
+	<select id="findResIdByUrl" resultType="String">
+		select res_uuid from pt_res
+		where res_url=#{res_url}
+	</select>
+	 
 	<!-- 新增 -->
-	<insert id="saveRes" parameterType="Res">
-		insert into pt_menu_directory (menu_id,dir_code,dir_name,dir_level_number,parent_id,parent_dir_name,dir_order,status,flag,locale,res_uuid,res_url) 
-			 values (#{menu_id},#{dir_code},#{dir_name},#{dir_level_number},#{parent_id},#{parent_dir_name},#{dir_order},#{status},#{flag},#{locale},#{res_uuid},#{res_url})
+	<insert id="insertRes" parameterType="Res">
+		insert into pt_menu_directory 
+		(menu_id,dir_code,dir_name,dir_level_number,parent_id,isitem,
+		dir_order,status,flag,locale,res_uuid) 
+		values 
+		(#{menu_id},#{dir_code},#{dir_name},#{dir_level_number},#{parent_id},
+		#{isitem},#{dir_order},#{status},#{flag},#{locale},#{res_uuid})
 	</insert>
 
 	<!-- 修改 -->
@@ -65,4 +74,5 @@
 		left join pt_res r on m.res_uuid=r.res_uuid 
 		left join pt_menu_directory n on m.parent_id=n.menu_id 
 	</select>
+	
 </mapper>
