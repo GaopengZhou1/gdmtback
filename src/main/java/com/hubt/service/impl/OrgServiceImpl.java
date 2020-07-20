@@ -24,13 +24,25 @@ public class OrgServiceImpl implements OrgService {
 
     @Override
     public Org findOrgById(String id) {
-        return orgMapper.findOrgById(id);
+        Org ans = orgMapper.findOrgById(id);
+        Org fa = new Org();
+        if(ans.getParent_uuid() == null || ans.getParent_uuid().equals("-1") || ans.getParent_uuid().equals("outerroot")){
+            fa.setOrgan_name("None");
+        }
+        else{
+            fa = orgMapper.findOrgById(ans.getParent_uuid());
+        }
+        ans.setParent(fa);
+        return ans;
     }
 
     @Override
-    public List<Org> findAll() {
-        List<Org> allList = orgMapper.findAll();
-        System.out.println(allList);
+    public List<Org> findAll(Integer pageNumber, Integer pageSize) {
+        List<Org> allList = orgMapper.findAll((pageNumber-1)*pageSize, pageSize);
+        for(int i=0;i<allList.size();i++){
+            Org fa = orgMapper.findOrgById(allList.get(i).getParent_uuid());
+            allList.get(i).setParent(fa);
+        }
         return allList;
     }
 
@@ -50,6 +62,11 @@ public class OrgServiceImpl implements OrgService {
         Timestamp d = new Timestamp(System.currentTimeMillis());
         String organ_uuid= UUID.randomUUID().toString();
         return orgMapper.insertOrg(organ_uuid,organ_code,organ_name,organ_type,in_use,parent_uuid,description,account_code,shortname,d,"","N");
+    }
+
+    @Override
+    public int countAll() {
+        return orgMapper.countAll();
     }
 
     public TreeNode getTree(String rootId){

@@ -19,9 +19,12 @@ public interface OrgMapper {
     @Select("select * from pt_organ where organ_uuid=#{id}")
     Org findOrgById(@Param("id") String id);
 
-    @Select("select * from pt_organ")
-    List<Org> findAll();
+    @Select("select * from pt_organ limit #{pageNumber}, #{pageSize}")
+    List<Org> findAll(@Param("pageNumber") Integer pageNumber, @Param("pageSize") Integer pageSize);
 
     @Select("select * from pt_organ where parent_uuid=#{pid}")
     List<Org> findOrgsByParentId(@Param("pid") String id);
+
+    @Select("select count(*) from pt_organ")
+    int countAll();
 }

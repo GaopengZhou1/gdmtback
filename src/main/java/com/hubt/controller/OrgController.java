@@ -1,6 +1,7 @@
 package com.hubt.controller;
 
 import com.hubt.model.Org;
+import com.hubt.model.OrgJsonResult;
 import com.hubt.model.TreeNode;
 import com.hubt.service.OrgService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,11 @@ public class OrgController {
 
     @RequestMapping("/getOrgs")
     @ResponseBody
-    public List<Org> findAllOrgs(){
-        return orgService.findAll();
+    public OrgJsonResult<Org> findAllOrgs(Integer pageNumber, Integer pageSize){
+        OrgJsonResult<Org> list = new OrgJsonResult<Org>();
+        list.setRows(orgService.findAll(pageNumber, pageSize));
+        list.setTotal(orgService.countAll());
+        return list;
     }
 
     @RequestMapping("/getOrg")
