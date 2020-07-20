@@ -10,12 +10,16 @@ public interface RoleService {
 
 	Role selectRoleByRole_name(String role_name);
 
-	List<Role> getRoles();
+	List<Role> getRoles(int begin, int end);
 
 	int removeRoleByUUID(String dataId);
 
 	Role getRoleByUUID(String uuid);
 
 	int updateRole(Role role);
+
+	Role selectRoleByRole_uuid(String role_uuid);
+
+	int getRoleCount();
 
 }
