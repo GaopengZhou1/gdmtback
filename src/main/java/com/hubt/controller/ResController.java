@@ -27,21 +27,27 @@ public class ResController {
 		this.resService = resService;
 	}
 
+	@ResponseBody
 	@RequestMapping("/insert")
 	public boolean insertRes(@Param("form")Res res) throws Exception {
 		res.setMenu_id( Integer.toString( Integer.parseInt(res.getDir_code())-100 ));
-		res.setRes_uuid(resService.findResIdByUrl(res.getRes_url()).get(0));
+		List<String> list = resService.findResIdByUrl(res.getRes_url());
+		if(list.size() > 0)
+			res.setRes_uuid(list.get(0));
 		res.setStatus('1');
 		res.setFlag('1');
 		res.setLocale("zh-CN");
-		System.out.println(res);
+//		System.out.println(res);
 		return resService.insertRes(res);
 	}
 	
 	@ResponseBody
 	@RequestMapping("/update")
 	public boolean updateRes(@Param("form")Res res) {
-//		System.out.println(res);
+		List<String> list = resService.findResIdByUrl(res.getRes_url());
+		if(list.size() > 0)
+			res.setRes_uuid(list.get(0));
+//		System.out.println("update " + res);
 		return resService.updateRes(res);
 	}
 
@@ -90,7 +96,7 @@ public class ResController {
 	@ResponseBody
 	@RequestMapping("/getResources")
 	public UsersJasonResult<Res> getRes(@Param("pageSize") Integer pageSize, @Param("pageNumber") Integer pageNumber) {
-		System.out.println(pageSize + ", " + pageNumber);
+//		System.out.println(pageSize + ", " + pageNumber);
 		UsersJasonResult<Res> list = new UsersJasonResult<Res>();
 		list.setRows(resService.findAll(pageNumber, pageSize));
 		list.setTotal(resService.countAll());

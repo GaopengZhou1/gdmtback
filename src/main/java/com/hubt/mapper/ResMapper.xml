@@ -21,12 +21,11 @@
 
 	<!-- 修改 -->
 	<update id="updateRes" parameterType="Res">
-		update pt_menu_directory m 
-		inner join pt_res r on m.menu_id=r.res_uuid 
-		set r.res_url=#{res_url}, m.dir_code=#{dir_code}, m.dir_name=#{dir_name}, 
-		m.dir_level_number=#{dir_level_number}, m.parent_id=#{parent_id}, 
-		m.isitem=#{isitem}, m.dir_order=#{dir_order}
-		where menu_id =	#{res_uuid}
+		update pt_menu_directory
+		set dir_code=#{dir_code}, dir_name=#{dir_name}, 
+		dir_level_number=#{dir_level_number}, parent_id=#{parent_id}, 
+		isitem=#{isitem}, dir_order=#{dir_order}, res_uuid=#{res_uuid} 
+		where menu_id =	#{menu_id}
 	</update>
 
 	<!-- 删除 -->

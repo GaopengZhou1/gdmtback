@@ -22,7 +22,7 @@
 		<!-- panel-heading -->
 		<div class="panel-body nopadding">
 			<form id="resForm" method="post" class="form-bordered">
-				<input id="res_uuid" name="res_uuid" type="hidden" value="<%=request.getParameter("id")%>">
+				<input id="menu_id" name="menu_id" type="hidden" value="<%=request.getParameter("id")%>"> <!-- 原来是res_uuid -->
 				<div class="form-group">
 					<label class="col-sm-4 control-label">资源路径</label>
 					<div class="col-sm-8">
@@ -119,7 +119,7 @@
 			};
 			
 			//初始化页面
-			$.get('${pageContext.request.contextPath}/res/getResource', {uuid : $('#res_uuid').val()}, function (res) {
+			$.get('${pageContext.request.contextPath}/res/getResource', {uuid : $('#menu_id').val()}, function (res) {	 /* 原来是res_uuid */
 				debugger;
 				$('#res_url').val(res.res_url);
 				$('#dir_code').val(res.dir_code);
